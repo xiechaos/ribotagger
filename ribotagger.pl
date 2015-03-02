@@ -1,9 +1,4 @@
 #!/usr/bin/env perl
-# Copyright: Xie Chao (xiechaos@gmail.com)
-# Work in progress.
-# You can use it in your publication, but please don't borrow it to your own software (yet).
-# It will be released as Open Source once published. 
-
 use strict;
 use Getopt::Long;
 use List::Util qw(min sum);
