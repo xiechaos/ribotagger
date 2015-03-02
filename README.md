@@ -9,6 +9,8 @@ of output files, including a few tabular files and a BIOM formated file.
 The tabular files can be used for your 16S/18S profiling analysis, while the BIOM file can be directly
 used by tools like QIIME.
 
+Please check the poster.pdf for an overview of the package. 
+
 ## Example Runs
 ### Sample data
 You need to downaload and unpack the <a href="files/samples.tar.gz">sample data files</a>. You should see 5 fastq files in the "test" folder. 
