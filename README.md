@@ -13,7 +13,7 @@ Please check the poster.pdf for an overview of the package.
 
 ## Example Runs
 ### Sample data
-You need to downaload and unpack the <a href="files/samples.tar.gz">sample data files</a>. You should see 5 fastq files in the "test" folder. 
+You need to downaload and unpack the <a href="http://137.132.19.92/cnv/samples.tar.gz">sample data file</a>. You should see 5 fastq files in the "test" folder. 
 ### Test Runs
 
 ```
