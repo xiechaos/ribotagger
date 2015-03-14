@@ -6,9 +6,9 @@
 
 #+ Library, echo=FALSE, message=FALSE, warning=FALSE
 library(vegan)
+library(rgl)
 library(ggplot2)
 theme_set(theme_bw())
-invisible(dev.off())
 
 #+ Arguments, echo=FALSE
 args <- commandArgs(T);
@@ -106,6 +106,13 @@ if(kdim == 3)
     oneVthree;
 }
 
+#+ pcoa.3D, echo=FALSE, webgl=TRUE 
+if(kdim == 3)
+{
+     plot3d(pco$X1, pco$X2, pco$X3, size=10, col=c("red", "green", "blue", "orange"), xlab="MDS1", ylab="MDS2", zlab="MDS3")
+     text3d(pco$X1, pco$X2, pco$X3, pco$sample, adj=c(0,2), cex=1, color=c("red", "green", "blue", "orange"))
+}
+
 #' ## Biplots
 
 #+ pcoa.biplot.12,echo=FALSE, message=FALSE
@@ -127,6 +134,7 @@ if(kdim == 3)
 		geom_text(aes(label = tag), subset(U, good), size = 1.5)
     ggsave(biplot2, file=sprintf('%s/pcoa.biplot.13.pdf', out.dir))
     biplot2;
+
 }
 
 #+ saveData, echo=FALSE
