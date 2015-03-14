@@ -1,5 +1,9 @@
 #!/usr/bin/env Rscript
 
+#' # Introduction 
+#' Some text
+
+
 #+ Library, echo=FALSE, message=FALSE, warning=FALSE
 library(vegan)
 library(ggplot2)
@@ -25,7 +29,7 @@ if(args[3] == 'knit'){
 }
 
 
-#+ echo=FALSE
+#+ echo=FALSE, warning=FALSE
 dir.create(out.dir)
 top                      <- as.numeric(args[4])      # 0..1, default 1
 factor                   <- as.numeric(args[5])      # default 10
@@ -83,33 +87,37 @@ eig <- pcoa$eig
 		if(kdim == 3) U[abs(U$X3) >= max(abs(pco$X3))/factor, 'good'] <- T
 explained <- 100 * eig / sum(eig)
 
-#+ pcoa.12, echo=FALSE
+#' ## PCoA plots
+
+#+ pcoa.12, echo=FALSE, message=FALSE
 oneVtwo = qplot(X1, X2, data = pco, label = sample, geom = 'text', size = I(4)) + 
 	scale_x_continuous(sprintf("MDS1 (%.2f%%)", explained[1])) + 
 	scale_y_continuous(sprintf("MDS2 (%.2f%%)", explained[2]))  
 ggsave(oneVtwo, file=sprintf('%s/pcoa.12.pdf', out.dir))
 oneVtwo
 
-#+ pcoa.13,echo=FALSE
+#+ pcoa.13,echo=FALSE, message=FALSE
 if(kdim == 3)
 {
 	oneVthree <- qplot(X1, X3, data = pco, label = sample, geom = 'text', size = I(4)) +
 		scale_x_continuous(sprintf("MDS1 (%.2f%%)", explained[1])) + 
 		scale_y_continuous(sprintf("MDS3 (%.2f%%)", explained[3]))  
 	ggsave(oneVthree, file=sprintf('%s/pcoa.13.pdf', out.dir))
-    oneVthree
+    oneVthree;
 }
 
-#+ pcoa.biplot.12,echo=FALSE
+#' ## Biplots
+
+#+ pcoa.biplot.12,echo=FALSE, message=FALSE
 biplot = ggplot(pco, aes(X1, X2)) + geom_text(aes(label = sample), size = 4)+ 
 	scale_x_continuous(sprintf("MDS1 (%.2f%%)", explained[1])) + 
 	scale_y_continuous(sprintf("MDS2 (%.2f%%)", explained[2])) +
 	geom_segment(aes(xend = 0, yend = 0), U) +
 	geom_text(aes(label = tag), subset(U, good), size = 1.5)
 ggsave(biplot, file=sprintf('%s/pcoa.biplot.12.pdf', out.dir))
-biplot
+biplot;
 
-#+ pca.biplot.13,echo=FALSE
+#+ pca.biplot.13,echo=FALSE, message=FALSE
 if(kdim == 3)
 {
 	biplot2 <- ggplot(pco, aes(X1, X3)) + geom_text(aes(label = sample), size = 4)+ 
@@ -118,7 +126,7 @@ if(kdim == 3)
 		geom_segment(aes(xend = 0, yend = 0), U) +
 		geom_text(aes(label = tag), subset(U, good), size = 1.5)
     ggsave(biplot2, file=sprintf('%s/pcoa.biplot.13.pdf', out.dir))
-    biplot2
+    biplot2;
 }
 
 #+ saveData, echo=FALSE
