@@ -3,6 +3,21 @@
 #' # Introduction 
 #' Some text
 
+#+ knitr, echo=FALSE
+library(knitr)
+knit_hooks$set(webgl = hook_webgl)
+opts_knit$set(root.dir=getwd())
+
+#+ Arguments, echo=FALSE
+args <- commandArgs(T);
+if(length(args) < 2)
+{
+    cat("usage: pcoa.r ribotag.tab output.dir\n");
+    q()
+}else{
+    in.file <- args[1]
+    out.dir <- args[2]
+}
 
 #+ Library, echo=FALSE, message=FALSE, warning=FALSE
 library(vegan)
@@ -10,29 +25,10 @@ library(rgl)
 library(ggplot2)
 theme_set(theme_bw())
 
-#+ Arguments, echo=FALSE
-args <- commandArgs(T);
-if(args[3] == 'knit'){
-    in.file <- args[1]
-    out.dir <- args[2]
-    #in.file <- 'out/my.sample.tab'
-    #out.dir <- 'out/my.sample.pcoa'
-}else{
-    if(length(args) < 2)
-    {
-        cat("usage: pcoa.r ribotag.tab output.dir\n");
-        q()
-    }else{
-        in.file <- args[1]
-        out.dir <- args[2]
-    }
-}
-
-
 #+ echo=FALSE, warning=FALSE
 dir.create(out.dir)
-top                      <- as.numeric(args[4])      # 0..1, default 1
-factor                   <- as.numeric(args[5])      # default 10
+top                      <- as.numeric(args[3])      # 0..1, default 1
+factor                   <- as.numeric(args[4])      # default 10
 if(is.na(factor)) factor <- 10
 
 #+ readData, echo=FALSE
