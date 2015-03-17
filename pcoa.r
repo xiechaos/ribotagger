@@ -15,15 +15,29 @@ if(length(args) < 2)
     cat("usage: pcoa.r ribotag.tab output.dir\n");
     q()
 }else{
-    in.file <- args[1]
-    out.dir <- args[2]
+    if(length(args) == 2){
+        in.file <- args[1]
+        out.dir <- args[2]
+    }
+    if (length(args)>2){
+        if (args[3] == 'knit'){
+            in.file <- args[1]
+            out.dir <- args[2]
+            system(sprintf("Rscript -e \"library(knitr); spin(paste0(getwd(), \'/pcoa.r\'))\" %s %s", in.file, out.dir))
+            q()
+        }else{
+            in.file <- args[1]
+            out.dir <- args[2]
+        }
+    }
 }
-
 #+ Library, echo=FALSE, message=FALSE, warning=FALSE
 library(vegan)
 library(rgl)
 library(ggplot2)
 theme_set(theme_bw())
+
+#' say `r out.dir`
 
 #+ echo=FALSE, warning=FALSE
 dir.create(out.dir)
