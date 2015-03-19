@@ -5,7 +5,7 @@ use List::Util qw(min sum);
 my $type = shift;
 
 my %rank;
-open(IN, "data/silva.119/raw/taxonomy/tax_slv_ssu_nr_119.txt") or die;
+open(IN, "data/silva.119/raw/taxonomy/tax_slv_ssu_nr_119.txt") or die $!;
 while(<IN>)
 {
 	my @a = split(/\t/, $_);

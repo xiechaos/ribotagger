@@ -6,7 +6,7 @@ my %tag;
 my %count;
 
 my %anno;
-open(IN, 'zcat data/gg_13_5/gg_13_5_taxonomy.txt.gz |') or die;
+open(IN, 'zcat data/gg_13_5/gg_13_5_taxonomy.txt.gz |') or die $!;
 while(<IN>)
 {
 	$anno{$1} = $2 if m/^(\d+)\t(.+)/;
