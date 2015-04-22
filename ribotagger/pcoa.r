@@ -1,16 +1,15 @@
 #!/usr/bin/env Rscript
 
-library(vegan)
-library(ggplot2)
-theme_set(theme_bw())
-
 args <- commandArgs(T);
-
 if(length(args) != 2)
 {
 	cat("usage: pcoa.r ribotag.tab output.dir\n");
 	q()
 }
+
+library(vegan)
+library(ggplot2)
+theme_set(theme_bw())
 
 in.file <- args[1]
 out.dir <- args[2]
