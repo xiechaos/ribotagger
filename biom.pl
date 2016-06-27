@@ -276,6 +276,7 @@ print OUT<<"END";
 	"format": "Biological Observation Matrix 0.9.1-dev",
 	"format_url": "http://biom-format.org/documentation/format_versions/biom-1.0.html",
 	"type": "OTU table",
+	"generated_by": "ribotagger",
 	"date": "$date",
 	"comment": "$cmd",
 	"rows": [
